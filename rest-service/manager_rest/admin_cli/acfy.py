@@ -101,7 +101,7 @@ class Options(object):
             '-p',
             '--parameters',
             type=click.File('rb'),
-            callback=yaml.load)
+            callback=lambda ctx, param, value: yaml.load(value))
 
     @staticmethod
     def verbose(expose_value=False):
