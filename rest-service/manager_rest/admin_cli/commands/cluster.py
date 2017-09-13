@@ -75,6 +75,6 @@ def start(ctx, host_ip, node_name):
 @acfy.pass_context
 def join(ctx, host_ip, node_name, master_ip, manager_username,
          manager_password):
-    response = requests.get('https://{0}/v3/cluster/status', verify=False)
+    response = requests.get('https://{0}/v3/cluster/status'.format(master_ip),
+                            verify=False)
     print response
-
