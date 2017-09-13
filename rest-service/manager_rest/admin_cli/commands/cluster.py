@@ -1,3 +1,4 @@
+import requests
 from functools import wraps
 
 try:
@@ -63,3 +64,17 @@ def start(ctx, host_ip, node_name):
         'node_name': node_name,
         'bootstrap_cluster': True
     })
+
+
+@cluster.command(name='join')
+@acfy.options.node_name
+@acfy.options.host_ip
+@acfy.options.master_ip
+@acfy.options.manager_username
+@acfy.options.manager_password
+@acfy.pass_context
+def join(ctx, host_ip, node_name, master_ip, manager_username,
+         manager_password):
+    response = requests.get('https://{0}/v3/cluster/status', verify=False)
+    print response
+
