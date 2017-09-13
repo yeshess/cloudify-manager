@@ -79,7 +79,8 @@ def join(ctx, host_ip, node_name, master_ip, manager_username,
     data = {'host_ip': host_ip, 'node_name': node_name}
     response = requests.put('{0}://{1}/v3/cluster/nodes/{2}'
                             .format(protocol, master_ip, node_name),
-                            verify=False, data=data)
+                            verify=False, data=data,
+                            auth=(manager_username, manager_password))
     response_data = response.json()
     credentials = response_data['credentials']
     ctx.invoke(commands.create_cluster_node, config={
