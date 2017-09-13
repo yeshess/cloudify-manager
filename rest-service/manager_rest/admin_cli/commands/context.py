@@ -21,4 +21,4 @@ def get_context(with_manager_deployment, logger):
     context = ctx.context
     if not with_manager_deployment:
         context['cloudify']['manager_deployment'] = '[omitted]'
-    logger.info(yaml.dump(ctx.context))
+    logger.info(yaml.safe_dump(ctx.context))
