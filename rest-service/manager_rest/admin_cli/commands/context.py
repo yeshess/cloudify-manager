@@ -25,7 +25,6 @@ def get_context(with_manager_deployment, logger):
 
 
 @context.command(name='update')
-@acfy.options.with_manager_deployment
 @acfy.options.parameters
 @acfy.pass_logger
 def update_context(parameters, logger):
