@@ -94,6 +94,10 @@ class Options(object):
             '--master-ip',
             required=True,
             help=helptexts.MASTER_IP)
+        self.with_manager_deployment = click.option(
+            '--with-manager-deployment',
+            flag=True,
+            help=helptexts.WITH_MANAGER_DEPLOYMENT)
 
     @staticmethod
     def verbose(expose_value=False):
