@@ -10,11 +10,6 @@ CLICK_CONTEXT_SETTINGS = dict(
     token_normalize_func=lambda param: param.lower())
 
 
-def _parse_parameters(ctx, name, value):
-    with open(value) as f:
-        return yaml.load(f)
-
-
 def pass_context(func):
     """Make click context Cloudify specific
 
@@ -103,8 +98,10 @@ class Options(object):
             '--with-manager-deployment/--without-manager-deployment',
             help=helptexts.WITH_MANAGER_DEPLOYMENT)
         self.parameters = click.option(
+            '-p',
             '--parameters',
-            callback=_parse_parameters)
+            type=click.File('rb'),
+            callback=yaml.load)
 
     @staticmethod
     def verbose(expose_value=False):
