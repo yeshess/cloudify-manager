@@ -76,7 +76,16 @@ def start(ctx, host_ip, node_name):
 def join(ctx, host_ip, node_name, master_ip, manager_username,
          manager_password):
     protocol = 'http'
-    response = requests.get('{0}://{1}/v3/cluster/status'
-                            .format(protocol, master_ip),
-                            verify=False)
-    print response
+    data = {'host_ip': host_ip, 'node_name': node_name}
+    response = requests.put('{0}://{1}/v3/cluster/nodes/{2}'
+                            .format(protocol, master_ip, node_name),
+                            verify=False, data=data)
+    response_data = response.json()
+    credentials = response_data['credentials']
+    ctx.invoke(commands.create_cluster_node, config={
+        'host_ip': host_ip,
+        'node_name': node_name,
+        'bootstrap_cluster': False,
+        'credentials': credentials,
+        'join_addrs': [master_ip]
+    })
