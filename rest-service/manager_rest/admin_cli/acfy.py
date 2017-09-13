@@ -1,4 +1,4 @@
-
+import yaml
 import click
 from functools import wraps
 
@@ -8,6 +8,11 @@ from . import helptexts, logger
 CLICK_CONTEXT_SETTINGS = dict(
     help_option_names=['-h', '--help'],
     token_normalize_func=lambda param: param.lower())
+
+
+def _parse_parameters(ctx, name, value):
+    with open(value) as f:
+        return yaml.load(f)
 
 
 def pass_context(func):
@@ -97,6 +102,9 @@ class Options(object):
         self.with_manager_deployment = click.option(
             '--with-manager-deployment/--without-manager-deployment',
             help=helptexts.WITH_MANAGER_DEPLOYMENT)
+        self.parameters = click.option(
+            '--parameters',
+            callback=_parse_parameters)
 
     @staticmethod
     def verbose(expose_value=False):

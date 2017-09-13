@@ -22,3 +22,11 @@ def get_context(with_manager_deployment, logger):
     if not with_manager_deployment:
         context['cloudify']['manager_deployment'] = '[omitted]'
     logger.info(yaml.safe_dump(ctx.context))
+
+
+@context.command(name='update')
+@acfy.options.with_manager_deployment
+@acfy.options.parameters
+@acfy.pass_logger
+def update_context(parameters, logger):
+    print parameters
