@@ -172,16 +172,16 @@ def _generate_ssl_certificate(ips,
 @acfy.options.internal_cert_path
 @acfy.options.internal_key_path
 @acfy.pass_logger
-def create_internal_certs(host_ip, ca_cert_path, ca_key_path,
-                          internal_cert_path, internal_key_path, logger):
+def create_internal_certs(host_ip, ca_cert, ca_key,
+                          internal_cert, internal_key, logger):
     metadata = _load_cert_metadata()
     networks = metadata.get('networks', {})
     internal_rest_host = host_ip or metadata['internal_rest_host']
     networks['default'] = internal_rest_host
     cert_ips = [internal_rest_host] + list(networks.values())
-    _generate_ssl_certificate(cert_ips, internal_rest_host, internal_cert_path,
-                              internal_key_path, sign_cert=ca_cert_path,
-                              sign_key=ca_key_path)
+    _generate_ssl_certificate(cert_ips, internal_rest_host, internal_cert,
+                              internal_key, sign_cert=ca_cert,
+                              sign_key=ca_key)
     logger.info('Generated SSL certificate: {0} and key: {1}'.format(
-        internal_cert_path, internal_key_path
+        internal_cert, internal_key
     ))

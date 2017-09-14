@@ -122,16 +122,20 @@ class Options(object):
             callback=lambda ctx, param, value: yaml.load(value))
         self.ca_cert_path = click.option(
             '--ca-cert',
-            default=INTERNAL_CA_CERT_PATH)
+            default=INTERNAL_CA_CERT_PATH,
+            type=click.Path)
         self.ca_key_path = click.option(
-            '--ca-cert',
-            default=INTERNAL_CA_KEY_PATH)
+            '--ca-key',
+            default=INTERNAL_CA_KEY_PATH,
+            type=click.Path)
         self.internal_cert_path = click.option(
-            '--ca-cert',
-            default=INTERNAL_CERT_PATH)
+            '--internal-cert',
+            default=INTERNAL_CERT_PATH,
+            type=click.Path)
         self.internal_key_path = click.option(
-            '--ca-cert',
-            default=INTERNAL_KEY_PATH)
+            '--internal-key',
+            default=INTERNAL_KEY_PATH,
+            type=click.Path)
 
     @staticmethod
     def verbose(expose_value=False):
