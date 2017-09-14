@@ -25,7 +25,7 @@ def _register_commands():
     _acfy.add_command(cluster.cluster)
     _acfy.add_command(context.context)
     _acfy.add_command(ldap.ldap)
-    _acfy.add_command(maintenance.maintenance)
+    _acfy.add_command(maintenance.maintenance_mode)
     _acfy.add_command(ssl.ssl)
     _acfy.add_command(snapshots.snapshots)
 
