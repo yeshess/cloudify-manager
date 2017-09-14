@@ -7,6 +7,7 @@ from manager_rest import config, utils
 from manager_rest.maintenance import (
     get_running_executions,
     prepare_maintenance_dict)
+from manager_rest.flask_utils import setup_flask_app
 from manager_rest.constants import (MAINTENANCE_MODE_ACTIVATED,
                                     MAINTENANCE_MODE_STATUS_FILE,
                                     MAINTENANCE_MODE_ACTIVATING)
@@ -14,7 +15,7 @@ from manager_rest.constants import (MAINTENANCE_MODE_ACTIVATED,
 
 @acfy.group(name='maintenance-mode')
 def maintenance_mode():
-    pass
+    setup_flask_app()
 
 
 @maintenance_mode.command(name='status',
