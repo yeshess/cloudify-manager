@@ -185,3 +185,7 @@ def create_internal_certs(host_ip, ca_cert, ca_key,
     logger.info('Generated SSL certificate: {0} and key: {1}'.format(
         internal_cert, internal_key
     ))
+    logger.info('Restarting nginx and RabbitMQ...')
+    subprocess.check_call(['systemctl', 'restart', 'nginx',
+                           'cloudify-rabbitmq'])
+    logger.info('Done!')
