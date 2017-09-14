@@ -69,6 +69,7 @@ setup(
         'manager_rest.storage',
         'manager_rest.security',
         'manager_rest.admin_cli',
+        'manager_rest.admin_cli.commands',
     ],
     package_data={'manager_rest': ['VERSION']},
     license='LICENSE',
