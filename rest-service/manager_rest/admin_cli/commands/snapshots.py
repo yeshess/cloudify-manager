@@ -1,4 +1,6 @@
 
+from json import loads
+
 from requests import post
 
 from .. import acfy, helptexts
@@ -44,8 +46,9 @@ def restore(snapshot_id,
             snapshot_id),
         json=data, headers=get_auth_header(), verify=False
     )
+    execution = loads(response.content)
     logger.info("Started workflow execution. The execution's id is {0}".format(
-        response.content['id']))
+        execution['id']))
     if not restore_certificates:
         return
     if no_reboot:
