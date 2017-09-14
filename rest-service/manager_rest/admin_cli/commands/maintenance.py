@@ -3,7 +3,7 @@ import json
 import time
 
 from .. import acfy
-from manager_rest import config, utils
+from manager_rest import config, storage, utils
 from manager_rest.maintenance import (
     get_running_executions,
     prepare_maintenance_dict)
@@ -16,6 +16,15 @@ from manager_rest.constants import (MAINTENANCE_MODE_ACTIVATED,
 @acfy.group(name='maintenance-mode')
 def maintenance_mode():
     setup_flask_app()
+
+    class FakeUser(object):
+        pass
+
+    # storage manager checks that the current user is_admin, but we don't have
+    # an user, so for now we'll simply mock it
+    user = FakeUser()
+    user.is_admin = True
+    storage.storage_manager.current_user = user
 
 
 @maintenance_mode.command(name='status',
