@@ -167,6 +167,10 @@ class Options(object):
             default=False,
             help=helptexts.NO_REBOOT)
 
+        self.execution_id = click.option(
+            '--execution-id',
+            required=True)
+
     @staticmethod
     def force(help):
         return click.option(
