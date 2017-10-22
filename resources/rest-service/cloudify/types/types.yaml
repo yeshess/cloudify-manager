@@ -196,7 +196,18 @@ node_types:
             validate_agent_timeout:
               default: 20
 
+        #####################################################
+        # This operation commands the agent to communicate with
+        # a new manager.
+        # ---------------------------------------------------
+        # It will be executed on the central deployment
+        # agent. A request will be sent via AMQP to the agent's
+        # host.
+        #####################################################
 
+        transfer_agent:
+          implementation: agent.cloudify_agent.operations.transfer_agent
+          executor: central_deployment_agent
 
       cloudify.interfaces.host:  # DEPRECATED
         get_state: {}
@@ -499,6 +510,8 @@ workflows:
         default: True
       install_script:
         default: ''
+
+  transfer_agents: default_workflows.cloudify.plugins.workflows.transfer_agents
 
 ##################################################################################
 # Base data type definitions
