@@ -1,5 +1,6 @@
-%global _use_internal_dependency_generator 0
-%define __find_requires %{nil}
+# psycopg2 ships with its own required shared libraries
+%global __requires_exclude_from site-packages/psycopg2
+%global __provides_exclude_from site-packages/psycopg2
 
 Name:           cloudify-management-worker
 Version:        %{CLOUDIFY_VERSION}
