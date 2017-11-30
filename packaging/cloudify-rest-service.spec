@@ -1,4 +1,3 @@
-
 Name:           cloudify-rest-service
 Version:        %{CLOUDIFY_VERSION}
 Release:        %{CLOUDIFY_PACKAGE_RELEASE}%{?dist}
