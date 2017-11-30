@@ -1,3 +1,6 @@
+%global _use_internal_dependency_generator 0
+%define __find_requires %{nil}
+
 Name:           cloudify-management-worker
 Version:        %{CLOUDIFY_VERSION}
 Release:        %{CLOUDIFY_PACKAGE_RELEASE}%{?dist}
