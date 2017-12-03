@@ -23,7 +23,7 @@ curl https://raw.githubusercontent.com/cloudify-cosmo/cloudify-versions/master/p
 
 mkdir -p /opt/manager/resources/packages/agents
 cd /opt/manager/resources/packages/agents
-xargs wget </tmp/agents-list.txt
+xargs curl -O </tmp/agents-list.txt
 rm /tmp/agents-list.txt
 
 python -c 'import os
