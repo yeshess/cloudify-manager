@@ -29,16 +29,14 @@ rm /tmp/agents-list.txt
 python -c 'import os
 
 def splitext(filename):
-    # not using os.path.splitext as it would return .gz instead of
-    # .tar.gz
-    if filename.endswith('.tar.gz'):
-        return '.tar.gz'
-    elif filename.endswith('.exe'):
-        return '.exe'
+    # not using os.path.splitext as it would return .gz instead of .tar.gz
+    if filename.endswith(".tar.gz"):
+        return ".tar.gz"
+    elif filename.endswith(".exe"):
+        return ".exe"
     else:
-        raise FileError(
-            'Unknown agent format for {0}. '
-            'Must be either tar.gz or exe'.format(filename))
+        raise ValueError("Unknown agent format for {0}. "
+            "Must be either tar.gz or exe".format(filename))
 
 def normalize_agent_name(filename):
     return filename.split("_", 1)[0].lower()
