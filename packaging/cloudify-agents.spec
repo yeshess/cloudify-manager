@@ -12,6 +12,9 @@ BuildRequires:  python >= 2.7
 Requires(pre):  shadow-utils
 
 
+%description
+Cloudify Agent packages
+
 %prep
 
 curl https://raw.githubusercontent.com/cloudify-cosmo/cloudify-versions/master/packages-urls/agent-packages.yaml > /tmp/agents-list.txt
