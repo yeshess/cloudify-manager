@@ -47,7 +47,7 @@ for fn in os.listdir("."):
 '
 
 %install
-mv /opt %{buildroot}/opt
+mv /opt/manager %{buildroot}/opt/manager
 
 %pre
 groupadd -fr cfyuser
