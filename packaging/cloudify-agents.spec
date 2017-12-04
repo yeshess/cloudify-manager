@@ -47,6 +47,7 @@ for fn in os.listdir("."):
 '
 
 %install
+mkdir -p %{buildroot}/opt
 mv /opt/manager %{buildroot}/opt/manager
 
 %pre
