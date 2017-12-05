@@ -25,8 +25,13 @@ from sqlalchemy.ext.associationproxy import ASSOCIATION_PROXY
 
 from manager_rest.utils import classproperty
 
+try:
+    from aria.modeling.models import aria_declarative_base
+    md = aria_declarative_base.metadata
+except ImportError:
+    md = MetaData()
 
-db = SQLAlchemy(metadata=MetaData(naming_convention={
+md.naming_convention = {
     # This is to generate migration scripts with constraint names
     # using the same naming convention used by PostgreSQL by default
     # http://stackoverflow.com/a/4108266/183066
@@ -35,7 +40,9 @@ db = SQLAlchemy(metadata=MetaData(naming_convention={
     'ck': '%(table_name)s_%(column_0_name)s_check',
     'fk': '%(table_name)s_%(column_0_name)s_fkey',
     'pk': '%(table_name)s_pkey',
-}))
+}
+
+db = SQLAlchemy(metadata=md)
 
 
 class UTCDateTime(db.TypeDecorator):
