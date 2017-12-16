@@ -13,7 +13,7 @@ Vendor:         Gigaspaces Inc.
 Packager:       Gigaspaces Inc.
 
 BuildRequires:  python >= 2.7, python-virtualenv, openssl-devel, git
-Requires:       python >= 2.7, postgresql-libs, rabbitmq-server
+Requires:       python >= 2.7, postgresql-libs
 Requires(pre):  shadow-utils
 
 
