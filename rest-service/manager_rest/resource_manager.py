@@ -15,6 +15,7 @@
 
 import os
 import uuid
+import yaml
 import shutil
 import traceback
 import itertools
@@ -263,6 +264,7 @@ class ResourceManager(object):
             application_dir,
             application_file_name
         )
+        self._validate_blueprint_size(dsl_location)
         try:
             plan = tasks.parse_dsl(dsl_location,
                                    resources_base,
@@ -1374,6 +1376,18 @@ class ResourceManager(object):
             raise manager_exceptions.IllegalActionError(
                 "Can't modify the global resource `{0}` from outside its "
                 "tenant `{1}`".format(resource.id, resource.tenant_name))
+
+    def _validate_blueprint_size(self, blueprint_path):
+        with open(blueprint_path) as f:
+            blueprint = yaml.safe_load(f)
+        node_templates = blueprint.get(constants.NODE_TEMPLATES, [])
+        total = sum(len(nt.get(constants.RELATIONSHIPS, []))
+                    for nt in node_templates.values())
+        if total > config.instance.max_blueprint_relationships:
+            raise manager_exceptions.InvalidBlueprintError(
+                'Blueprint contains {0} relationships, but only up to {1} '
+                'are supported'
+                .format(total, config.instance.max_blueprint_relationships))
 
 
 # What we need to access this manager in Flask

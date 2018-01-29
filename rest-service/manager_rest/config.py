@@ -61,6 +61,8 @@ class Config(object):
 
         self.warnings = []
 
+        self.max_blueprint_relationships = 1000
+
     def load_configuration(self):
         for env_var_name, namespace in [
                 ('MANAGER_REST_CONFIG_PATH', ''),
